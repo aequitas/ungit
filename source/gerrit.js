@@ -1,6 +1,7 @@
 
 var config = require('./config');
 var os = require('os');
+var fs = require('fs');
 var child_process = require('child_process');
 var Ssh2Connection;
 
@@ -40,8 +41,11 @@ var ssh2 = function(remote, command, callback) {
   var connectConfig = {
     host: remote.host,
     port: remote.port,
-    username: remote.username
+    username: remote.username,
   };
+  if (config.gerritPrivateKey){
+    connectConfig.privateKey = fs.readFileSync(config.gerritPrivateKey);
+  }
   connectConfig.agent = config.sshAgent;
   if (!connectConfig.agent) {
     if (os.type() == 'Windows_NT') connectConfig.agent = 'pageant';

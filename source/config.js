@@ -42,6 +42,9 @@ var defaultConfig = {
   // Ssh agent. Defaults to pageant on Windows and SSH_AUTH_SOCK on Unix.
   sshAgent: undefined,
 
+  // Gerrit SSH Private key file. Keyfile to use for gerrit SSH commands.
+  gerritPrivateKey: undefined,
+
   // Set to false to show rebase and merge on drag and drop on all nodes.
   showRebaseAndMergeOnlyOnRefs: true,
 
